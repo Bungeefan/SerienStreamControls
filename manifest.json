@@ -1,0 +1,49 @@
+{
+  "manifest_version": 2,
+  "name": "SerienStream (S.to) Controls",
+  "version": "1.0",
+  "description": "Fügt einen WEITER und einen ZURÜCK Button an den Seiten von SerienStream (s.to) hinzu um schneller zwischen Episoden wechseln zu können",
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "36": "icons/icon36.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "permissions": [
+    "tabs",
+    "storage"
+  ],
+  "browser_action": {
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "36": "icons/icon36.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    },
+    "default_title": "S.to Controls",
+    "default_popup": "popup.html"
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "{6531242e-78e9-41b6-8571-076ad5550e38}"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://s.to/*",
+        "*://serienstream.to/*",
+        "*://serien.cam/*",
+        "*://190.115.18.20/*"
+      ],
+      "js": [
+        "js/contentScript.js"
+      ],
+      "css": [
+        "css/button.css"
+      ]
+    }
+  ]
+}

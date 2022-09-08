@@ -1,0 +1,111 @@
+li.ss-last-series-link > a {
+    margin-left: 0;
+}
+
+li.ss-last-series-link .close {
+    cursor: pointer;
+    font-weight: bold;
+    position: absolute;
+    right: 0.5em;
+    padding: 0 0.2em;
+    font-size: large;
+}
+
+li.ss-last-series-link .close:hover {
+    background-color: #464646 !important;
+    color: #fff !important;
+    font-weight: 700 !important;
+}
+
+li.ss-last-series-link.secondary {
+    display: none !important;
+}
+
+@media only screen and (max-width: 1200px) and (min-width: 992px) {
+    li.ss-last-series-link.primary {
+        display: none !important;
+    }
+
+    li.ss-last-series-link.secondary {
+        display: inherit !important;
+    }
+}
+
+div.ss-bt-parent-container * {
+    box-sizing: initial;
+    transition: initial;
+}
+
+div.ss-bt-parent-container {
+    top: 0;
+    left: 0;
+    right: 0;
+    position: fixed;
+    min-height: 100%;
+    pointer-events: none;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+}
+
+div.ss-btn-container {
+    pointer-events: auto;
+}
+
+div.previous-ss-btn-container {
+    align-items: flex-end;
+}
+
+div.middle-ss-btn-container {
+    /* Receives width from .container */
+    margin-left: initial;
+    margin-right: initial;
+    padding: 0 5em;
+}
+
+div.next-ss-btn-container {
+    align-items: flex-start;
+}
+
+#ss-control-previous:hover, #ss-control-next:hover {
+    border-color: #1FCE00;
+    /*old color: #e74c3c*/
+}
+
+#ss-control-previous:hover:after, #ss-control-next:hover:after {
+    border-top-color: #1FCE00;
+    border-right-color: #1FCE00;
+}
+
+.ss-control {
+    display: block;
+    width: 8rem;
+    height: 8rem;
+    /*margin-left: 1.5rem;*/
+    background-color: #FFF;
+    border: 1rem solid #FFF;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.ss-control:after {
+    content: '';
+    display: block;
+    margin-top: 2.10rem;
+    width: 2.8rem;
+    height: 2.8rem;
+    border-top: 1rem solid #027FFA;
+    border-right: 1rem solid #027FFA;
+}
+
+#ss-control-next:after {
+    margin-left: 1.2rem;
+    transform: rotate(45deg);
+}
+
+#ss-control-previous:after {
+    margin-left: 2.7rem;
+    transform: rotate(-135deg);
+}
