@@ -152,9 +152,22 @@ function createControl(next) {
         control.href = controlDetails.href;
         if (next) {
             //Save next button url for continue link
-            let obj = {};
-            obj[lastSeriesKey] = new URL(control.href).pathname;
-            getStorage().set(obj);
+            let pathArray = window.location.pathname.split('/');
+            if (pathArray.length >= 6 && window.location.pathname.indexOf("serie") !== -1) {
+                //If we are currently in the episode view
+                let obj = {};
+                obj[lastSeriesKey] = new URL(control.href).pathname;
+                getStorage().set(obj);
+            } else {
+                //Otherwise only save if there is nothing to overwrite
+                getStorage().get(lastSeriesKey, storage => {
+                    if (!storage[lastSeriesKey]) {
+                        let obj = {};
+                        obj[lastSeriesKey] = new URL(control.href).pathname;
+                        getStorage().set(obj);
+                    }
+                });
+            }
         }
     } else {
         control.href = "#";
