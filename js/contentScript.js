@@ -160,7 +160,7 @@ function createControl(next) {
         control.style.visibility = "hidden";
     }
     if (controlDetails.terminus) {
-        control.title = (next ? "Nächste" : "Vorherige") + " " + controlDetails.terminus;
+        control.title = `${next ? "Nächste" : "Vorherige"} ${controlDetails.terminus} (${next ? "N" : "B"})`;
     }
     control.id = "ss-control-" + (next ? "next" : "previous");
     control.classList.add("ss-control");
