@@ -82,7 +82,7 @@ function processPlayer(settings) {
     if (settings['automatic_play']) {
         let playerView = document.querySelector(".inSiteWebStream");
         if (playerView) {
-            playerView.scrollIntoView();
+            playerView.scrollIntoView({behavior: "smooth", block: "center"});
 
             //Doesn't work on iframes
             // playerView.querySelector("iframe").addEventListener("load", evt => {
