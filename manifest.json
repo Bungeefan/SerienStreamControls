@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "SerienStream (S.to) Controls",
-  "version": "1.0",
+  "version": "1.1",
   "description": "Fügt einen WEITER und einen ZURÜCK Button an den Seiten von SerienStream (s.to) hinzu um schneller zwischen Episoden wechseln zu können",
   "icons": {
     "16": "icons/icon16.png",
