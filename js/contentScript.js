@@ -135,6 +135,7 @@ function createLastWatchedListItem(lastWatchedSeries, seriesName) {
 
     let lastWatchedSeriesA = document.createElement("a");
     lastWatchedSeriesA.href = lastWatchedSeries;
+    lastWatchedSeriesA.title = "Letzte Serie fortsetzen";
     lastWatchedSeriesA.innerText = seriesName + " fortsetzen";
     lastWatchedSeriesLi.appendChild(lastWatchedSeriesA);
 
