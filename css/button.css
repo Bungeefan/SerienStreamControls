@@ -48,6 +48,8 @@ div.ss-bt-parent-container {
     align-items: center;
     justify-content: center;
     flex-direction: row;
+
+    font-size: 0.75vw;
 }
 
 div.ss-btn-container {
@@ -81,11 +83,11 @@ div.next-ss-btn-container {
 
 .ss-control {
     display: block;
-    width: 8rem;
-    height: 8rem;
-    /*margin-left: 1.5rem;*/
+    width: 8em;
+    height: 8em;
+    /*margin-left: 1.5em;*/
     background-color: #FFF;
-    border: 1rem solid #FFF;
+    border: 1em solid #FFF;
     border-radius: 50%;
     cursor: pointer;
 }
@@ -93,19 +95,19 @@ div.next-ss-btn-container {
 .ss-control:after {
     content: '';
     display: block;
-    margin-top: 2.10rem;
-    width: 2.8rem;
-    height: 2.8rem;
-    border-top: 1rem solid #027FFA;
-    border-right: 1rem solid #027FFA;
+    margin-top: 2.10em;
+    width: 2.8em;
+    height: 2.8em;
+    border-top: 1em solid #027FFA;
+    border-right: 1em solid #027FFA;
 }
 
 #ss-control-next:after {
-    margin-left: 1.2rem;
+    margin-left: 1.2em;
     transform: rotate(45deg);
 }
 
 #ss-control-previous:after {
-    margin-left: 2.7rem;
+    margin-left: 2.7em;
     transform: rotate(-135deg);
 }
