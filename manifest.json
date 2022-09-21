@@ -42,7 +42,7 @@
         "js/contentScript.js"
       ],
       "css": [
-        "css/button.css"
+        "css/content.css"
       ]
     }
   ]
