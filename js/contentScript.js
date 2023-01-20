@@ -38,22 +38,22 @@ getStorage().get('settings', storage => {
 
                 let previousDiv = document.createElement("div");
                 previousDiv.classList.add("ss-btn-container", "previous-ss-btn-container");
-                previousDiv.appendChild(control_previous);
+                previousDiv.append(control_previous);
 
                 let middleDiv = document.createElement("div");
                 middleDiv.classList.add("container", "middle-ss-btn-container");
 
                 let nextDiv = document.createElement("div");
                 nextDiv.classList.add("ss-btn-container", "next-ss-btn-container");
-                nextDiv.appendChild(control_next);
+                nextDiv.append(control_next);
 
                 let parentBtnDiv = document.createElement("div");
                 parentBtnDiv.classList.add("ss-bt-parent-container");
-                parentBtnDiv.appendChild(previousDiv);
-                parentBtnDiv.appendChild(middleDiv);
-                parentBtnDiv.appendChild(nextDiv);
+                parentBtnDiv.append(previousDiv);
+                parentBtnDiv.append(middleDiv);
+                parentBtnDiv.append(nextDiv);
 
-                document.body.appendChild(parentBtnDiv);
+                document.body.append(parentBtnDiv);
 
                 processPlayer(settings);
             }
@@ -137,7 +137,7 @@ function createLastWatchedListItem(lastWatchedSeries, seriesName) {
     lastWatchedSeriesA.href = lastWatchedSeries;
     lastWatchedSeriesA.title = "Letzte Serie fortsetzen";
     lastWatchedSeriesA.innerText = " fortsetzen";
-    lastWatchedSeriesLi.appendChild(lastWatchedSeriesA);
+    lastWatchedSeriesLi.append(lastWatchedSeriesA);
 
     let lastWatchedSeriesName = document.createElement("span");
     lastWatchedSeriesName.innerText = seriesName;
