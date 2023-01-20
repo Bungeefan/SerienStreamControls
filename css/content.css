@@ -21,6 +21,19 @@ li.ss-last-series-link.secondary {
     display: none !important;
 }
 
+li.ss-last-series-link .ss-last-series-name {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+@media only screen and (min-width: 992px) {
+    li.ss-last-series-link .ss-last-series-name {
+        display: inline-block;
+        max-width: 125px;
+    }
+}
+
 @media only screen and (max-width: 1200px) and (min-width: 992px) {
     li.ss-last-series-link.primary {
         display: none !important;

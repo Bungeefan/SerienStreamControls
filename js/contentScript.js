@@ -136,8 +136,13 @@ function createLastWatchedListItem(lastWatchedSeries, seriesName) {
     let lastWatchedSeriesA = document.createElement("a");
     lastWatchedSeriesA.href = lastWatchedSeries;
     lastWatchedSeriesA.title = "Letzte Serie fortsetzen";
-    lastWatchedSeriesA.innerText = seriesName + " fortsetzen";
+    lastWatchedSeriesA.innerText = " fortsetzen";
     lastWatchedSeriesLi.appendChild(lastWatchedSeriesA);
+
+    let lastWatchedSeriesName = document.createElement("span");
+    lastWatchedSeriesName.innerText = seriesName;
+    lastWatchedSeriesName.classList.add("ss-last-series-name");
+    lastWatchedSeriesA.prepend(lastWatchedSeriesName);
 
     let lastWatchedSeriesIcon = document.createElement("i");
     lastWatchedSeriesIcon.classList.add("fas", "fa-chevron-right");
