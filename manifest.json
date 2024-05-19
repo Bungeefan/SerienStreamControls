@@ -37,6 +37,7 @@
         "*://186.2.175.5/*"
       ],
       "js": [
+        "js/shared.js",
         "js/contentScript.js"
       ],
       "css": [

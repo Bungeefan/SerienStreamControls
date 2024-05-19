@@ -1,36 +1,12 @@
 "use strict";
 
-const lastSeriesKey = "lastSeries";
+getStorage().get(storageKeys.settings, storage => {
+    let settings = initializeSettings(storage?.settings);
 
-function getStorage() {
-    return chrome.storage.sync;
-}
-
-getStorage().get('settings', storage => {
-    let settings = storage?.settings;
-    let changed = false;
-
-    if (settings === undefined) {
-        settings = {};
-        changed = true;
-    }
-    if (settings['enabled'] === undefined) {
-        changed = true;
-        settings['enabled'] = true;
-    }
-    if (settings['automatic_play'] === undefined) {
-        changed = true;
-        settings['automatic_play'] = true;
-    }
-
-    if (changed) {
-        getStorage().set({'settings': settings});
-    }
-
-    if (settings['enabled']) {
+    if (settings[settingsKeys.enabled]) {
         try {
             let pathArray = window.location.pathname.split('/');
-            if (pathArray.length >= 3 && window.location.pathname.indexOf("serie") !== -1) {
+            if (pathArray.length >= 3 && window.location.pathname.includes("serie")) {
                 let control_previous = createControl(false);
                 let control_next = createControl(true);
 
@@ -79,7 +55,7 @@ function addKeyListener(control_next, control_previous) {
 }
 
 function processPlayer(settings) {
-    if (settings['automatic_play']) {
+    if (settings[settingsKeys.automaticPlay]) {
         let playerView = document.querySelector(".inSiteWebStream");
         if (playerView) {
             playerView.scrollIntoView({behavior: "smooth", block: "center"});
@@ -105,8 +81,8 @@ function processPlayer(settings) {
 }
 
 function addLastWatchedSeries() {
-    getStorage().get(lastSeriesKey, storage => {
-        let lastWatchedSeries = storage[lastSeriesKey];
+    getStorage().get(storageKeys.lastSeries, storage => {
+        let lastWatchedSeries = storage[storageKeys.lastSeries];
         if (lastWatchedSeries) {
             let seriesName = lastWatchedSeries.split("/")[3].replaceAll("-", " ").toUpperCase();
 
@@ -158,17 +134,17 @@ function createControl(next) {
         if (next) {
             //Save next button url for continue link
             let pathArray = window.location.pathname.split('/');
-            if (pathArray.length >= 6 && window.location.pathname.indexOf("serie") !== -1) {
+            if (pathArray.length >= 6 && window.location.pathname.includes("serie")) {
                 //If we are currently in the episode view
                 let obj = {};
-                obj[lastSeriesKey] = new URL(control.href).pathname;
+                obj[storageKeys.lastSeries] = new URL(control.href).pathname;
                 getStorage().set(obj);
             } else {
                 //Otherwise only save if there is nothing to overwrite
-                getStorage().get(lastSeriesKey, storage => {
-                    if (!storage[lastSeriesKey]) {
+                getStorage().get(storageKeys.lastSeries, storage => {
+                    if (!storage[storageKeys.lastSeries]) {
                         let obj = {};
-                        obj[lastSeriesKey] = new URL(control.href).pathname;
+                        obj[storageKeys.lastSeries] = new URL(control.href).pathname;
                         getStorage().set(obj);
                     }
                 });

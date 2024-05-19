@@ -1,32 +1,8 @@
 "use strict";
 
-const lastSeriesKey = "lastSeries";
-
-function getStorage() {
-    return chrome.storage.sync;
-}
-
 window.addEventListener("load", event => {
-    getStorage().get('settings', storage => {
-        let settings = storage?.settings;
-        let changed = false;
-
-        if (settings === undefined) {
-            settings = {};
-            changed = true;
-        }
-        if (settings['enabled'] === undefined) {
-            changed = true;
-            settings['enabled'] = true;
-        }
-        if (settings['automatic_play'] === undefined) {
-            changed = true;
-            settings['automatic_play'] = true;
-        }
-
-        if (changed) {
-            getStorage().set({'settings': settings});
-        }
+    getStorage().get(storageKeys.settings, storage => {
+        let settings = initializeSettings(storage?.settings);
 
         const checkboxList = document.querySelectorAll("input[type=checkbox]");
         checkboxList.forEach(checkboxElement => {
@@ -36,11 +12,13 @@ window.addEventListener("load", event => {
             }
             checkboxElement.checked = shouldBeChecked;
             checkboxElement.addEventListener("change", event => {
-
-                getStorage().get('settings', storage => {
+                getStorage().get(storageKeys.settings, storage => {
                     let settings = storage.settings;
                     settings[checkboxElement.name] = checkboxElement.checked;
-                    getStorage().set({'settings': settings});
+
+                    let storageUpdate = {};
+                    storageUpdate[storageKeys.settings] = settings;
+                    getStorage().set(storageUpdate);
 
                     if (event.target.name === 'enabled' && event.target.checked === false) {
                         let element = document.querySelector("input[name=automatic_play]");
@@ -53,7 +31,7 @@ window.addEventListener("load", event => {
 
         const resetLastWatchedSeries = document.querySelector("#resetLastWatchedSeries");
         resetLastWatchedSeries.addEventListener("click", event => {
-            getStorage().remove(lastSeriesKey);
+            getStorage().remove(storageKeys.lastSeries);
             document.querySelector("h4")?.remove();
             let htmlSpanElement = document.createElement("h4");
             htmlSpanElement.style.color = "green";
