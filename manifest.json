@@ -34,7 +34,8 @@
       "matches": [
         "*://s.to/*",
         "*://serienstream.to/*",
-        "*://186.2.175.5/*"
+        "*://186.2.175.5/*",
+        "*://aniworld.to/*"
       ],
       "js": [
         "js/shared.js",

@@ -31,7 +31,7 @@ window.addEventListener("load", event => {
 
         const resetLastWatchedSeries = document.querySelector("#resetLastWatchedSeries");
         resetLastWatchedSeries.addEventListener("click", event => {
-            getStorage().remove(storageKeys.lastSeries);
+            getStorage().remove([storageKeys.lastSeries, getKey(storageKeys.lastSeries, aniworldHost)]);
             document.querySelector("h4")?.remove();
             let htmlSpanElement = document.createElement("h4");
             htmlSpanElement.style.color = "green";

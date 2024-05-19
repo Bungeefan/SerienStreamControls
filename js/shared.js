@@ -8,6 +8,21 @@ const settingsKeys = {
     automaticPlay: 'automatic_play',
 };
 
+const aniworldHost = "aniworld";
+
+function getLocalizedKey(setting) {
+    let host = window.location.host.split(".")[0];
+    return getKey(setting, host.includes(aniworldHost) ? aniworldHost : null);
+}
+
+function getKey(setting, prefix = null) {
+    if (prefix) {
+        return prefix + "." + setting;
+    } else {
+        return setting;
+    }
+}
+
 function getStorage() {
     return chrome.storage.sync;
 }

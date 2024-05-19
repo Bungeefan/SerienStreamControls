@@ -6,7 +6,7 @@ getStorage().get(storageKeys.settings, storage => {
     if (settings[settingsKeys.enabled]) {
         try {
             let pathArray = window.location.pathname.split('/');
-            if (pathArray.length >= 3 && window.location.pathname.includes("serie")) {
+            if (pathArray.length >= 3 && window.location.pathname.includes("stream")) {
                 let control_previous = createControl(false);
                 let control_next = createControl(true);
 
@@ -81,8 +81,10 @@ function processPlayer(settings) {
 }
 
 function addLastWatchedSeries() {
-    getStorage().get(storageKeys.lastSeries, storage => {
-        let lastWatchedSeries = storage[storageKeys.lastSeries];
+    let storageKey = getLocalizedKey(storageKeys.lastSeries);
+
+    getStorage().get(storageKey, storage => {
+        let lastWatchedSeries = storage[storageKey];
         if (lastWatchedSeries) {
             let seriesName = lastWatchedSeries.split("/")[3].replaceAll("-", " ").toUpperCase();
 
@@ -127,6 +129,8 @@ function createLastWatchedListItem(lastWatchedSeries, seriesName) {
 }
 
 function createControl(next) {
+    let storageKey = getLocalizedKey(storageKeys.lastSeries);
+
     let control = document.createElement("a");
     let controlDetails = getControlDetails(next);
     if (controlDetails.href) {
@@ -134,17 +138,17 @@ function createControl(next) {
         if (next) {
             //Save next button url for continue link
             let pathArray = window.location.pathname.split('/');
-            if (pathArray.length >= 6 && window.location.pathname.includes("serie")) {
+            if (pathArray.length >= 6 && window.location.pathname.includes("stream")) {
                 //If we are currently in the episode view
                 let obj = {};
-                obj[storageKeys.lastSeries] = new URL(control.href).pathname;
+                obj[storageKey] = new URL(control.href).pathname;
                 getStorage().set(obj);
             } else {
                 //Otherwise only save if there is nothing to overwrite
-                getStorage().get(storageKeys.lastSeries, storage => {
-                    if (!storage[storageKeys.lastSeries]) {
+                getStorage().get(storageKey, storage => {
+                    if (!storage[storageKey]) {
                         let obj = {};
-                        obj[storageKeys.lastSeries] = new URL(control.href).pathname;
+                        obj[storageKey] = new URL(control.href).pathname;
                         getStorage().set(obj);
                     }
                 });
